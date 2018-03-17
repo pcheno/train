@@ -45,7 +45,7 @@ $(document).ready(function () {
         name: trainObj.name
       }
       firebase.database().ref("trains/" + trainKeys[i]).set(updateTrain);
-    } //for trainKeys.lenght
+    } //for trainKeys.length
   }); //data on value snap
 
   data.on("value", function (snap) {
@@ -83,7 +83,7 @@ $(document).ready(function () {
         firebase.database().ref("trains/" + trainKeys[i] + "/nextTime").set(arrive);
       } //else
     } //for trainKeys length
-  }, 60000);  //setInterval
+  }, 60000);  //setInterval function
 
   $("#submit").on("click", function (event) {
     event.preventDefault();
