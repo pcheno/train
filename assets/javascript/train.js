@@ -45,8 +45,8 @@ $(document).ready(function () {
         name: trainObj.name
       }
       firebase.database().ref("trains/" + trainKeys[i]).set(updateTrain);
-    }
-  });
+    } //for trainKeys.lenght
+  }); //data on value snap
 
   data.on("value", function (snap) {
     dbObject = snap.val();
@@ -63,19 +63,13 @@ $(document).ready(function () {
         if (trainObjKeys[j] != "firstTime") {
           display += "<td>" + trainObj[trainObjKeys[j]] + "</td>";
         }
-      }
+      }  //for trainObjKeys length
       display += "</tr>";
-    }
+    } //for trainKeys lenght
     display += "</table>";
     $("#display").append(display);
 
-
-  });
-
-
-
-
-
+  }); //data on value snap
 
   setInterval(function () {
 
@@ -89,10 +83,10 @@ $(document).ready(function () {
         console.log("arrive:" + arrive);
         firebase.database().ref("trains/" + trainKeys[i] + "/nextTime").set(arrive);
 
-      }
-    }
+      } //else
+    } //for trainKeys length
 
-  }, 60000);
+  }, 60000);  //setInterval
 
 
   $("#submit").on("click", function (event) {
@@ -101,9 +95,6 @@ $(document).ready(function () {
     var dest = $("#destination").val().trim();
     var firstTrain = $("#firstTrain").val();
     var frequency = $("#frequency").val();
-
-
-    console.log("in on value");
 
     var newTrain = {
       destination: dest,
@@ -114,13 +105,9 @@ $(document).ready(function () {
       name: name
     }
 
-
-
     var newObject = "train" + (Object.keys(dbObject).length + 1);
 
     firebase.database().ref("trains/" + newObject).set(newTrain);
-
-
   });
 
   function interval(dbObject) {
