@@ -63,7 +63,7 @@ $(document).ready(function () {
         if (trainObjKeys[j] != "firstTime") {
           display += "<td>" + trainObj[trainObjKeys[j]] + "</td>";
         }
-      }  //for trainObjKeys length
+      } //for trainObjKeys length
       display += "</tr>";
     } //for trainKeys lenght
     display += "</table>";
@@ -83,7 +83,7 @@ $(document).ready(function () {
         firebase.database().ref("trains/" + trainKeys[i] + "/nextTime").set(arrive);
       } //else
     } //for trainKeys length
-  }, 60000);  //setInterval function
+  }, 60000); //setInterval function
 
   $("#submit").on("click", function (event) {
     event.preventDefault();
@@ -102,5 +102,4 @@ $(document).ready(function () {
     var newObject = "train" + (Object.keys(dbObject).length + 1);
     firebase.database().ref("trains/" + newObject).set(newTrain);
   }); //submit on click
-
 }); //$(document).ready(function ()
