@@ -53,7 +53,7 @@ $(document).ready(function () {
     $("#display").empty();
     var display = "<table><tr><th>Destination</th><th>Frequency</th><th>Minutes Away</th><th>Name</th><th>Arrival Time</th>";
     var trainKeys = Object.keys(dbObject);
-
+    // make the display table
     for (var i = 0; i < trainKeys.length; i++) {
       var trainObj = dbObject[trainKeys[i]];
       var trainObjKeys = Object.keys(trainObj);
@@ -68,7 +68,6 @@ $(document).ready(function () {
     } //for trainKeys lenght
     display += "</table>";
     $("#display").append(display);
-
   }); //data on value snap
 
   setInterval(function () {
@@ -82,12 +81,9 @@ $(document).ready(function () {
         var arrive = moment(dbObject[trainKeys[i]].firstTime, moment.HTML5_FMT.TIME).add(dbObject[trainKeys[i]].frequency, "minutes").format("hh:mm A");
         console.log("arrive:" + arrive);
         firebase.database().ref("trains/" + trainKeys[i] + "/nextTime").set(arrive);
-
       } //else
     } //for trainKeys length
-
   }, 60000);  //setInterval
-
 
   $("#submit").on("click", function (event) {
     event.preventDefault();
@@ -95,7 +91,6 @@ $(document).ready(function () {
     var dest = $("#destination").val().trim();
     var firstTrain = $("#firstTrain").val();
     var frequency = $("#frequency").val();
-
     var newTrain = {
       destination: dest,
       firstTime: firstTrain,
@@ -104,9 +99,7 @@ $(document).ready(function () {
       minAway: frequency,
       name: name
     }
-
     var newObject = "train" + (Object.keys(dbObject).length + 1);
-
     firebase.database().ref("trains/" + newObject).set(newTrain);
   }); //submit on click
 
