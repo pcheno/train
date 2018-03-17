@@ -108,10 +108,6 @@ $(document).ready(function () {
     var newObject = "train" + (Object.keys(dbObject).length + 1);
 
     firebase.database().ref("trains/" + newObject).set(newTrain);
-  });
-
-  function interval(dbObject) {
-
-  }
+  }); //submit on click
 
 }); //$(document).ready(function ()
